@@ -1,9 +1,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var methodOverride = require('method-override')
 var exphbs = require('express-handlebars');
 
-var routes = require('./controllers/burgers_controller.js');
+var routes = require('./controllers/burger_controller.js');
 
 
 var app = express();
@@ -20,9 +19,6 @@ app.use(
   })
 );
 
-// override with POST having ?_method=DELETE
-app.use(methodOverride("_method"));
-
 app.engine(
   "handlebars",
   exphbs({
@@ -33,7 +29,9 @@ app.set("view engine", "handlebars");
 
 app.use("/", routes);
 
-app.listen(PORT);
+app.listen(PORT, function(){
+  console.log(`app listening on port ${PORT}`);
+});
 
 
 

@@ -21,7 +21,19 @@ router.put("/burgers/update/:id", function(req, res) {
       res.send(data);
     }
   );
+
+
+
 });
+ //Create
+ router.post("/burgers/create", function(req, res) {
+   console.log(req.body.burger_name);
+   burger.insertOne("events", req.body.burger_name, req.body.devoured, function(
+     data
+   ) {
+     res.redirect("/burgers");
+   });
+ });
 
 
 module.exports = router;

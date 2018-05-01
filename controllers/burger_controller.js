@@ -3,8 +3,10 @@ var burger = require("../models/burger.js");
 var router = express.Router();
 
 router.get('/',function(req,res) {
-  res.redirect("/burgers");
-
+   burger.selectAll(function(burgers) {
+     var data = { burgers };
+     res.render("index", data);
+   });
 });
 
 router.get('/burgers', (req, res) => {
